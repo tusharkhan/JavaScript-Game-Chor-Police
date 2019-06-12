@@ -1,0 +1,24 @@
+.bord{
+    height: 200px;
+    width: 100%;
+    background-color: #80deea;
+    margin: 10px auto;
+}
+
+.emptyBoard{
+    height: 200px;
+    width: 100%;
+    background-color: transparent;
+}
+
+#mainBordOne, #mainBordFour{
+    width: 30% !important;
+}
+
+.selectButton{
+    margin: 72px;
+}
+
+.rollButton{
+    margin: 30px;
+}
