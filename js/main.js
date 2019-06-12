@@ -2,6 +2,9 @@
  * Author : Tushar Khan
  */
 
+var playerMap = [];
+var playerMapIndex = ["Rich", "Police", "Thief", "Robber"];
+
 /**
  * Function for set players name
  *
@@ -45,9 +48,56 @@ function setScoreBoard(playerNameRow, scoreArray) {
 }
 
 
+function setBoxValue(){
+    for (let i = 0; i < playerMap.length; i++) {
+        let scoreBox = document.getElementById('mainBord' + (i+1));
+        scoreBox.setAttribute("data", playerMap[i]);
+
+        if( ( i === 3 ) || ( i === 4) ){
+            scoreBox.appendChild( createThiefButton() );
+        }
+    }
+}
+
+
+function createThiefButton() {
+    let button = document.createElement("button");
+    button.setAttribute('type', 'button');
+    button.innerHTML = 'Select Chor'; //TODO : Change value according to random number
+    button.setAttribute('onclick', 'getThisInfo()');
+
+    return button;
+}
+
+
+/**
+ * Get Random number
+ * from 0 to max
+ *
+ * @param max
+ * @returns {number}
+ */
 function getRandomNumber( max ){
     return Math.floor( Math.random() * Math.floor( max ));
 }
 
-setPlayerNames("playerNameTableHeader", ["pp", "ii"]);
-console.log( getRandomNumber(4) );
+
+/**
+ * Set player map
+ */
+function setPlayerMap(){
+    let randomNumber = getRandomNumber(4);
+
+    ( -1 === playerMap.indexOf( randomNumber ) ) ? playerMap.push( randomNumber ) : "";
+}
+
+
+function printArr() {
+    while ( ! ( playerMap.length == 4 ) ){
+        setPlayerMap();
+    }
+
+    console.log( playerMap );
+    setBoxValue();
+    playerMap = [];
+}
