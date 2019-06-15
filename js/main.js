@@ -4,6 +4,8 @@
 
 var playerMap = [];
 var playerMapIndex = ["Rich", "Police", "Thief", "Robber"];
+var whichToselect = -1;
+
 
 /**
  * Function for set players name
@@ -53,18 +55,23 @@ function setBoxValue(){
         let scoreBox = document.getElementById('mainBord' + (i+1));
         scoreBox.setAttribute("data", playerMap[i]);
 
-        if( ( i === 3 ) || ( i === 4) ){
-            scoreBox.appendChild( createThiefButton() );
+        if( ( playerMap[i] === 3 ) || ( playerMap[i] === 2) ){
+            scoreBox.innerHTML = ' ';
+            scoreBox.appendChild( createButton( whichToselect ) );
+            // scoreBox.appendChild( createButton( playerMap[i] ) );
+        } else {
+            scoreBox.innerHTML = playerMapIndex[ playerMap[i] ];
         }
     }
 }
 
 
-function createThiefButton() {
+function createButton( select ) {
     let button = document.createElement("button");
     button.setAttribute('type', 'button');
-    button.innerHTML = 'Select Chor'; //TODO : Change value according to random number
-    button.setAttribute('onclick', 'getThisInfo()');
+    button.setAttribute('class', 'btn btn-small pink btn-large lighten-3 selectButton');
+    button.innerHTML = 'Select ' + playerMapIndex[select]; //TODO : Change value according to random number
+    button.setAttribute('onclick', 'getThisInfo(this)');
 
     return button;
 }
@@ -92,10 +99,17 @@ function setPlayerMap(){
 }
 
 
+
+function getThisInfo( buttonInfo ){
+    let attribute = buttonInfo.parentNode.getAttribute('data');
+}
+
+
 function printArr() {
-    while ( ! ( playerMap.length == 4 ) ){
+    while ( ! ( playerMap.length === 4 ) ){
         setPlayerMap();
     }
+    whichToselect = getRandomNumber(4);
 
     console.log( playerMap );
     setBoxValue();
