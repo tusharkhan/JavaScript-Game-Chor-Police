@@ -20,7 +20,12 @@
                 <div class="scoreBord" id="scoreBord">
                     <table class="striped">
                         <thead>
-                            <tr id="playerNameTableHeader"></tr>
+                            <tr id="playerNameTableHeader">
+                                <th>Player One</th>
+                                <th>Player Two</th>
+                                <th>Player Three</th>
+                                <th>Player Four</th>
+                            </tr>
                         </thead>
 
                         <tbody id="playerScoreTableRow">
@@ -35,13 +40,12 @@
                 </div>
 
                 <div class="col s6 m6">
-                    <button onclick="printArr()" class="waves-effect rollButton waves-light btn-large btn-block"><i class="material-icons left">autorenew</i>Roll Again</button>
+                    <button onclick="main()" class="waves-effect rollButton waves-light btn-large btn-block"><i class="material-icons left">autorenew</i>Roll Again</button>
+                    <button id="find" class="waves-effect rollButton waves-light btn-large btn-block"></button>
                 </div>
 
                 <div class="col m12 s12">
-                    <div class="bord" id="mainBord1">
-<!--                        <button class="btn btn-small pink btn-large lighten-3 selectButton">Select</button>-->
-                    </div>
+                    <div class="bord m4 col push-m4" id="mainBord1"></div>
                 </div>
 
                 <div class="col m12 s12">
@@ -51,8 +55,7 @@
                 </div>
 
                 <div class="col m12 s12">
-                    <div class="bord" id="mainBord4"></div>
-                </div>
+                    <div  class="bord m4 col push-m4" id="mainBord4"></div>
             </div>
         </div>
     </div>

@@ -1,6 +1,5 @@
 .bord{
     height: 200px;
-    width: 100%;
     background-color: #80deea;
     margin: 10px auto;
 }
@@ -11,9 +10,9 @@
     background-color: transparent;
 }
 
-#mainBord1, #mainBord4{
-    width: 30% !important;
-}
+/*#mainBord1, #mainBord4{*/
+/*    width: 30% !important;*/
+/*}*/
 
 .selectButton{
     margin: 72px;

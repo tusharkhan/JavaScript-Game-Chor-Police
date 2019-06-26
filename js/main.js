@@ -4,7 +4,11 @@
 
 var playerMap = [];
 var playerMapIndex = ["Rich", "Police", "Thief", "Robber"];
-var whichToselect = -1;
+var playerName = ["One", "Two", "Three", "Four"];
+var scoreArray = [100, 60, 0, 40];
+var currentScoreArray = [];
+var whichToSelect = -1;
+
 
 
 /**
@@ -37,7 +41,7 @@ function setScoreBoard(playerNameRow, scoreArray) {
     let createTableRow = document.createElement("tr");
 
     //Get score bord body
-    let playerScoreTableBody = document.getElementById(playerNameRow);
+    let playerScoreTableBody = document.getElementById("playerScoreTableRow");
 
     //Append all the score
     for (let index = 0; index < scoreArray.length; index++) {
@@ -50,28 +54,43 @@ function setScoreBoard(playerNameRow, scoreArray) {
 }
 
 
+
+
+/**
+ * Set value for boxes
+ */
 function setBoxValue(){
     for (let i = 0; i < playerMap.length; i++) {
         let scoreBox = document.getElementById('mainBord' + (i+1));
+        let paragraph = document.createElement("p");
+
         scoreBox.setAttribute("data", playerMap[i]);
 
         if( ( playerMap[i] === 3 ) || ( playerMap[i] === 2) ){
             scoreBox.innerHTML = ' ';
-            scoreBox.appendChild( createButton( whichToselect ) );
-            // scoreBox.appendChild( createButton( playerMap[i] ) );
+            scoreBox.appendChild( createButton( whichToSelect ) );
         } else {
-            scoreBox.innerHTML = playerMapIndex[ playerMap[i] ];
+            paragraph.setAttribute("class", "center");
+            paragraph.innerHTML = playerMapIndex[ playerMap[i] ];
+            scoreBox.appendChild( paragraph );
         }
     }
 }
 
 
+
+/**
+ * Create Button
+ *
+ * @param select
+ * @returns {HTMLButtonElement}
+ */
 function createButton( select ) {
     let button = document.createElement("button");
     button.setAttribute('type', 'button');
     button.setAttribute('class', 'btn btn-small pink btn-large lighten-3 selectButton');
-    button.innerHTML = 'Select ' + playerMapIndex[select]; //TODO : Change value according to random number
-    button.setAttribute('onclick', 'getThisInfo(this)');
+    button.innerHTML = 'Select ' + playerMapIndex[select];
+    button.setAttribute('onclick', 'getThisDataInfo(this)');
 
     return button;
 }
@@ -99,19 +118,69 @@ function setPlayerMap(){
 }
 
 
+/**
+ * Get clicked button parent info
+ *
+ * @param buttonInfo
+ */
+function getThisDataInfo( buttonInfo ){
+    currentScoreArray[playerMap.indexOf(0)] = 100;
 
-function getThisInfo( buttonInfo ){
-    let attribute = buttonInfo.parentNode.getAttribute('data');
+    let attribute = parseInt(buttonInfo.parentNode.getAttribute('data'));
+
+    if ( attribute === whichToSelect ) {
+        console.log("true attribute " + attribute);
+        currentScoreArray[playerMap.indexOf(1)] = scoreArray[1];
+
+        if ( ( playerMap.indexOf(attribute) === 2 ) ){
+            currentScoreArray[playerMap.indexOf(3)] = 40;
+            currentScoreArray[playerMap.indexOf(2)] = 0;
+        } else {
+            currentScoreArray[playerMap.indexOf(3)] = 0;
+            currentScoreArray[playerMap.indexOf(2)] = 40;
+        }
+    } else {
+        console.log("false attribute " + attribute);
+        currentScoreArray[playerMap.indexOf(1)] = 0;
+
+        if ( ( playerMap.indexOf(attribute) === 2 ) ){
+            currentScoreArray[playerMap.indexOf(3)] = 40;
+            currentScoreArray[playerMap.indexOf(2)] = scoreArray[1];
+        } else {
+            currentScoreArray[playerMap.indexOf(2)] = 40;
+            currentScoreArray[playerMap.indexOf(3)] = scoreArray[1];
+        }
+    }
+
+    setScoreBoard(playerName, currentScoreArray);
 }
 
 
-function printArr() {
-    while ( ! ( playerMap.length === 4 ) ){
-        setPlayerMap();
+/**
+ * Clear all data
+ * for a new roll
+ */
+function clearAll(){
+    for (let i = 0; i < playerMap.length; i++) {
+        let scoreBox = document.getElementById('mainBord' + (i+1));
+        scoreBox.innerHTML = " ";
     }
-    whichToselect = getRandomNumber(4);
+    while (playerMap.length > 0){
+        playerMap.pop();
+        currentScoreArray.pop();
+    }
 
-    console.log( playerMap );
+    document.getElementById("find").innerHTML = " ";
+}
+
+
+/**
+ * main function
+ */
+function main() {
+    clearAll();
+    while ( ! ( playerMap.length === 4 ) ) setPlayerMap();
+    whichToSelect = ( getRandomNumber(100) % 2 ) + 2;
+    document.getElementById("find").innerHTML = "Find " + playerMapIndex[whichToSelect];
     setBoxValue();
-    playerMap = [];
 }
