@@ -70,7 +70,7 @@ function setBoxValue(){
             scoreBox.innerHTML = ' ';
             scoreBox.appendChild( createButton( whichToSelect ) );
         } else {
-            paragraph.setAttribute("class", "center");
+            paragraph.setAttribute("class", "center para");
             paragraph.innerHTML = playerMapIndex[ playerMap[i] ];
             scoreBox.appendChild( paragraph );
         }
@@ -130,6 +130,7 @@ function getThisDataInfo( buttonInfo ){
 
     if ( attribute === whichToSelect ) {
         console.log("true attribute " + attribute);
+        M.toast({html : "Player caught " + playerMapIndex[whichToSelect]}, 7000);
         currentScoreArray[playerMap.indexOf(1)] = scoreArray[1];
 
         if ( ( playerMap.indexOf(attribute) === 2 ) ){
@@ -140,6 +141,7 @@ function getThisDataInfo( buttonInfo ){
             currentScoreArray[playerMap.indexOf(2)] = 40;
         }
     } else {
+        M.toast({html : "Player failed to get " + playerMapIndex[whichToSelect]}, 7000);
         console.log("false attribute " + attribute);
         currentScoreArray[playerMap.indexOf(1)] = 0;
 
@@ -169,7 +171,6 @@ function clearAll(){
         playerMap.pop();
         currentScoreArray.pop();
     }
-
     document.getElementById("find").innerHTML = " ";
 }
 
@@ -182,5 +183,6 @@ function main() {
     while ( ! ( playerMap.length === 4 ) ) setPlayerMap();
     whichToSelect = ( getRandomNumber(100) % 2 ) + 2;
     document.getElementById("find").innerHTML = "Find " + playerMapIndex[whichToSelect];
+    document.getElementById("image").src = "img/" + playerMapIndex[whichToSelect] + ".png";
     setBoxValue();
 }

@@ -10,14 +10,53 @@
     background-color: transparent;
 }
 
-/*#mainBord1, #mainBord4{*/
-/*    width: 30% !important;*/
-/*}*/
 
-.selectButton{
-    margin: 72px;
+.selectButton, .para{
+  width: 62% !important;
+  margin: 84px 47px !important;
 }
 
 .rollButton{
     margin: 30px;
 }
+
+#backgroundPicture img{
+    width: 100%;
+    margin: 0 auto;
+    overflow: hidden;
+    -webkit-animation: example 2.5s ease-in infinite;
+    animation: example 2.5s ease-in infinite;
+    transition: all .5s ease-in-out;
+}
+
+
+/**
+*  Animation
+*/
+
+/* Safari 4.0 - 8.0 */
+@-webkit-keyframes example {
+    0% {transform: scale(1);}
+    50% {transform: scale(1.1);}
+    100% {transform: scale(1);}
+  }
+
+
+  @-o-keyframes example {
+    0% {transform: scale(1);}
+    50% {transform: scale(1.1);}
+    100% {transform: scale(1);}
+  }
+
+  @-moz-keyframes example {
+    0% {transform: scale(1);}
+    50% {transform: scale(1.1);}
+    100% {transform: scale(1);}
+  }
+  
+  /* Standard syntax */
+  @keyframes example {
+    0% {transform: scale(1);}
+    50% {transform: scale(1.1);}
+    100% {transform: scale(1);}
+  }

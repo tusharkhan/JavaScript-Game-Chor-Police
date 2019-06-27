@@ -13,7 +13,7 @@
 <body>
     
     <div class="container-fluid">
-        <div class="row">
+        <div class="row" >
             <div class="col s12 m4">
                 <h3 class="header center orange-text">Score Bord</h3>
 
@@ -40,12 +40,15 @@
                 </div>
 
                 <div class="col s6 m6">
-                    <button onclick="main()" class="waves-effect rollButton waves-light btn-large btn-block"><i class="material-icons left">autorenew</i>Roll Again</button>
-                    <button id="find" class="waves-effect rollButton waves-light btn-large btn-block"></button>
+                    <button onclick="main()" class="waves-effect rollButton waves-light btn-large btn-block"><i class="material-icons left">autorenew</i>Roll </button>
                 </div>
 
                 <div class="col m12 s12">
                     <div class="bord m4 col push-m4" id="mainBord1"></div>
+                    <div class=" m2 push-m6 col" id="backgroundPicture">
+                        <p class="center" id="find"></p>
+                        <img src="" alt="" id="image"> 
+                    </div>
                 </div>
 
                 <div class="col m12 s12">
